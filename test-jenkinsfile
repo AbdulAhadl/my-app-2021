@@ -3,7 +3,8 @@ stage('git scm checkout'){
     git 'https://github.com/AbdulAhadl/my-app-2021.git'
 }
 stage('code build'){
-   sh 'mvn package'
+    def mvnhome = tool name: '', type: 'maven'
+   sh "${mvnhome}/bin/mvn package"
 
 }
 
