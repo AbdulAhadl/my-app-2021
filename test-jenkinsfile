@@ -1,19 +1,21 @@
 pipeline{
+
 agent any
+
 environment{
-    path = /opt/test-maven:$PATH
+   PATH = /opt/test-maven:$PATH
 }
 stages{
     stage('git checkout'){
         steps{
-        git 'https://github.com/AbdulAhadl/my-app-2021.git'
+             git 'https://github.com/AbdulAhadl/my-app-2021.git'
         }
     
     }
     stage('build the src'){
         steps{
-        sh 'mvn clean package'
-        sh 'mv target/*.war target/myweb.war'
+            sh 'mvn clean package'
+            sh 'mv target/*.war target/myweb.war'
         }
     
     }
