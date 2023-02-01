@@ -3,8 +3,8 @@ pipeline{
 agent any
 
 environment{
-   PATH ="/opt/test-maven:$PATH"
-}
+   PATH ="/opt/test-maven/bin:$PATH"
+ }
 stages{
     stage('git checkout'){
         steps{
