@@ -1,11 +1,18 @@
-node{
-stage('git scm checkout'){
-    git 'https://github.com/AbdulAhadl/my-app-2021.git'
-}
-stage('code build'){
-    def mvnhome = tool name: '', type: 'maven'
-   sh "${mvnhome}/bin/mvn package"
-
+pipeline{
+agent any
+stages{
+    stage('git checkout'){
+        steps{}
+    
+    }
+    stage('build the src'){
+        steps{}
+    
+    }
+    stage('deploy to tomcate'){
+        steps{}
+    }
+    
 }
 
 }
