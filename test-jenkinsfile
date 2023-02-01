@@ -6,22 +6,22 @@ environment{
    PATH ="/opt/maven-test/bin:$PATH"
  }
 stages{
-    stage('git checkout'){
+    stage("git checkout"){
         steps{
              git 'https://github.com/AbdulAhadl/my-app-2021.git'
         }
     
     }
-    stage('build the src'){
+    stage("build the src"){
         steps{
-            sh 'mvn clean package'
-            sh 'mv target/*.war target/myweb.war'
+            sh "mvn clean package"
+            sh "mv target/*.war target/myweb.war"
         }
     
     }
-    stage('deploy to tomcate'){
+    stage("deploy to tomcate"){
         steps{
-        sshagent(['newtest-jenkins']) {
+        sshagent(["newtest-jenkins"]) {
            sh """
               scp ssh -o StrictHostKeyChecking=no target/myweb  root@ip-172-31-36-221/apache-tomcat-9.0.71/webapps/ 
               ssh root@ip-172-31-36-221  /apache-tomcat-9.0.71/bin/shutdown.sh
