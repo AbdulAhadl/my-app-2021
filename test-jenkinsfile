@@ -14,8 +14,18 @@ pipeline{
             steps{
             
                  sh 'mvn clean package'
+                 sh 'mv target/*.war target/mywebapp.war'
             }
       
+      }
+      stage("deploy to tomcate"){
+         steps{
+               sshagent(['9dac03f0-d07a-4955-9261-0ce1ef878795']) {
+               sh 'scp -o StrictHostKeyChecking=no target/mywebapp.war ec2-user@35.180.164.15:/opt/apache-tomcat-10.1.5/bin/webapp'
+               sh 'ec2-user@35.180.164.15:/opt/apache-tomcat-10.1.5/bin/shutdown.sh'
+               ec2-user@35.180.164.15:/opt/apache-tomcat-10.1.5/bin/startup.sh
+}
+         }
       }
    
    }
