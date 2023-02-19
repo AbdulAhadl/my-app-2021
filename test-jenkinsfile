@@ -1,7 +1,7 @@
 pipeline{
    agent any
    environments{
-   path=/opt/apache-maven-3.9.0/bin:$PATH
+   PATH=/opt/apache-maven-3.9.0/bin:$PATH
    }
    stages{
       stage('git checkout'){
@@ -13,7 +13,7 @@ pipeline{
       stage('MAven-=build'){
             steps{
             
-                 sh 'mvn clean package:$path'
+                 sh 'mvn clean package'
             }
       
       }
