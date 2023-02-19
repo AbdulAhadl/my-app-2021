@@ -1,11 +1,21 @@
 pipeline{
    agent any
+   environments{
+   path=/opt/apache-maven-3.9.0/bin:$PATH
+   }
    stages{
-      stage{
+      stage('git checkout'){
          steps{
-         
+               git credentialsId: '2a06572d-d270-4602-9981-e11ed8b8be9e', url: 'https://github.com/AbdulAhadl/my-app-2021.git'
          
          }
+      }
+      stage('MAven-=build'){
+            steps{
+            
+                 sh 'mvn clean package:$path'
+            }
+      
       }
    
    }
